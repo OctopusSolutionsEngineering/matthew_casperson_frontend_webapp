@@ -63,7 +63,7 @@ step "get-stack-outputs" {
                   exit 1
                 fi
                 
-                EOT
+                    EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "Bash"
             OctopusUseBundledTooling = "False"
@@ -127,7 +127,7 @@ step "create-s3-bucket" {
                           - DomainName
                     Description: Name of S3 bucket to hold website content
                 
-                EOT
+                    EOT
             Octopus.Action.Aws.CloudFormationTemplateParameters = "[]"
             Octopus.Action.Aws.Region = "#{AWS.Region}"
             Octopus.Action.Aws.TemplateSource = "Inline"
@@ -342,7 +342,7 @@ step "proxy-with-api-gateway" {
                           - Ref: PackageVersion
                           - '/{proxy}'
                 
-                EOT
+                    EOT
             Octopus.Action.Aws.CloudFormationTemplateParameters = "[{\"ParameterKey\":\"EnvironmentName\",\"ParameterValue\":\"#{Octopus.Environment.Name}\"},{\"ParameterKey\":\"RestApi\",\"ParameterValue\":\"#{Octopus.Action[Get Stack Outputs].Output.RestApi}\"},{\"ParameterKey\":\"RootResourceId\",\"ParameterValue\":\"#{Octopus.Action[Get Stack Outputs].Output.RootResourceId}\"},{\"ParameterKey\":\"ResourceId\",\"ParameterValue\":\"#{Octopus.Action[Get Stack Outputs].Output.Web}\"},{\"ParameterKey\":\"PackageVersion\",\"ParameterValue\":\"#{Octopus.Action[Upload Frontend].Package[].PackageVersion}\"},{\"ParameterKey\":\"PackageId\",\"ParameterValue\":\"#{Octopus.Action[Upload Frontend].Package[].PackageId}\"},{\"ParameterKey\":\"BucketName\",\"ParameterValue\":\"#{Octopus.Action[Create S3 bucket].Output.AwsOutputs[Bucket]}\"},{\"ParameterKey\":\"SubPath\",\"ParameterValue\":\"\"}]"
             Octopus.Action.Aws.Region = "#{AWS.Region}"
             Octopus.Action.Aws.TemplateSource = "Inline"
@@ -400,7 +400,7 @@ step "update-stage" {
                         - !Ref Stage
                         - /
                 
-                EOT
+                    EOT
             Octopus.Action.Aws.CloudFormationTemplateParameters = "[{\"ParameterKey\":\"EnvironmentName\",\"ParameterValue\":\"#{Octopus.Environment.Name}\"},{\"ParameterKey\":\"DeploymentId\",\"ParameterValue\":\"#{Octopus.Action[Proxy with API Gateway].Output.AwsOutputs[DeploymentId]}\"},{\"ParameterKey\":\"ApiGatewayId\",\"ParameterValue\":\"#{Octopus.Action[Get Stack Outputs].Output.RestApi}\"}]"
             Octopus.Action.Aws.Region = "#{AWS.Region}"
             Octopus.Action.Aws.TemplateSource = "Inline"
@@ -455,7 +455,7 @@ step "get-stage-outputs" {
                 
                 write_highlight "Open [${STAGE_URL}index.html](${STAGE_URL}index.html) to view the frontend web app."
                 
-                EOT
+                    EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "Bash"
             OctopusUseBundledTooling = "False"
