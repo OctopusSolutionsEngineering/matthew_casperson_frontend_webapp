@@ -533,11 +533,12 @@ step "get-stage-outputs" {
 
 step "generate-issue-on-failure" {
     condition = "Failure"
-    name = "Generate Issue on Failure 2"
+    name = "Generate Issue on Failure"
 
     action {
         action_type = "Octopus.Script"
         excluded_environments = ["security"]
+        notes = "A note"
         properties = {
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "sales-maven-feed"
